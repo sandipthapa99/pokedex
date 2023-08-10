@@ -1,6 +1,6 @@
 import React from "react";
 import { PokemonProps } from "../../types/PokemonDetailProps";
-import { Box, Text } from "@mantine/core";
+import { Box, Flex, Text } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 import { getPokeId } from "../../utils";
 
@@ -11,47 +11,38 @@ const PokemonCard = ({ pokemon }: { pokemon: PokemonProps }) => {
   // media query for small evices
   const isSmall = useMediaQuery("(max-width:768px)");
   return (
-    <Box
+    <Flex
+      justify={"center"}
+      align={"center"}
+      direction={"column"}
+      py={24}
+      pos={"relative"}
       sx={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        padding: "24px 0",
         borderRadius: "24px",
         cursor: "pointer",
       }}
       className="card"
       // onClick={open}
-      pos={"relative"}
     >
-      <Box
-        className="card__wrap"
-        sx={{
-          position: "relative",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <figure
+      <Flex justify={"center"} align={"center"} pos={"relative"}>
+        <Box
+          component="figure"
           className="circle"
-          //   id={`circle-${getPokeId(url)}`}
-          style={{
+          id={`circle-${getPokeId(url)}`}
+          p={24}
+          sx={{
             zIndex: 1,
             borderRadius: "50%",
-            padding: "24px",
           }}
         >
           <img
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`}
             alt="Car model"
-            className="object-contain"
             height={isSmall ? "160" : "240"}
             width={isSmall ? "160" : "240"}
           />
-        </figure>
-      </Box>
+        </Box>
+      </Flex>
       <Text
         component="h2"
         sx={{
@@ -61,7 +52,7 @@ const PokemonCard = ({ pokemon }: { pokemon: PokemonProps }) => {
       >
         {name}
       </Text>
-    </Box>
+    </Flex>
   );
 };
 
