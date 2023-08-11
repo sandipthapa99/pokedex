@@ -22,6 +22,18 @@ const Filter = ({
         value ? dispatch(filterPokemon(value)) : dispatch(reset());
         value ? setIsFiltered(true) : setIsFiltered(false);
       }}
+      sx={{
+        "& input": {
+          "&::placeholder": {
+            fontFamily: "Raleway",
+            fontWeight: 500,
+            fontSize: 12,
+          },
+        },
+        ".mantine-Select-dropdown": {
+          fontFamily: "Raleway",
+        },
+      }}
       w={"15%"}
       data={[
         { value: "1", label: "Generation I" },

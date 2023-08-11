@@ -39,6 +39,7 @@ const Home = () => {
               rightIcon={<IconArrowRight />}
               color="blue.7"
               m={0}
+              sx={{ fontFamily: "Raleway" }}
             >
               My Team
             </Button>

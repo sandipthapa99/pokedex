@@ -48,6 +48,9 @@ const PokemonCard = ({ pokemon }: { pokemon: PokemonProps }) => {
             transform: "scale(1.025)",
             ".add-btn": {
               visibility: "inherit",
+              "& button": {
+                fontFamily: "Raleway",
+              },
             },
           },
           ".add-btn": {
@@ -84,6 +87,7 @@ const PokemonCard = ({ pokemon }: { pokemon: PokemonProps }) => {
           sx={{
             fontSize: "22px",
             textTransform: "capitalize",
+            fontFamily: "Raleway",
           }}
         >
           {name}

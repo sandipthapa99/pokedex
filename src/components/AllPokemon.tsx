@@ -43,6 +43,7 @@ const AllPokemon = () => {
             rightIcon={<IconArrowDown size={20} />}
             sx={{
               zIndex: 2,
+              fontFamily: "Raleway",
             }}
           >
             Load More

@@ -21,7 +21,7 @@ const Team = () => {
           <Title
             order={2}
             sx={(theme) => ({
-              fontFamily: `Poppins, ${theme.fontFamily}`,
+              fontFamily: `Raleway, ${theme.fontFamily}`,
               color: theme.colors.gray[7],
             })}
             weight={600}

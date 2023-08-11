@@ -46,7 +46,7 @@ const Empty = ({
         order={2}
         sx={{
           fontWeight: 600,
-          fontFamily: "Poppins",
+          fontFamily: "Raleway",
           fontSize: !smallScreen ? 40 : 24,
           color: theme.colors.dark[3],
         }}

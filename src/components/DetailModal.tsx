@@ -48,7 +48,7 @@ const DetailModal = ({
           },
           ".mantine-Modal-body": {
             padding: 0,
-            fontFamily: "Poppins",
+            fontFamily: "Raleway",
           },
         },
       }}
@@ -92,7 +92,7 @@ const DetailModal = ({
           weight={700}
           m={0}
           sx={{
-            fontFamily: "Poppins",
+            fontFamily: "Raleway",
           }}
         >
           {data?.name}
@@ -139,13 +139,13 @@ const DetailModal = ({
           sx={(theme) => ({
             ".mantine-Tabs-tabLabel": {
               fontSize: 16,
-              fontWeight: 500,
-              fontFamily: "Poppins",
+              fontWeight: 700,
+              fontFamily: "Raleway",
               color: theme.colors.dark[7],
             },
             "& p": {
               textTransform: "capitalize",
-              fontWeight: 500,
+              fontWeight: 600,
               color: theme.colors.dark[9],
             },
           })}
