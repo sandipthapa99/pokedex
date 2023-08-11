@@ -15,7 +15,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <Notifications limit={6} position="bottom-right" autoClose={5000} />
+        <Notifications limit={6} position="bottom-right" autoClose={3000} />
         <App />
       </BrowserRouter>
     </Provider>

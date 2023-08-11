@@ -1,6 +1,6 @@
 import React from "react";
 import { PokemonProps } from "../../types/PokemonDetailProps";
-import { ActionIcon, Box, Flex, Text, Tooltip } from "@mantine/core";
+import { ActionIcon, Box, Button, Flex, Text, Tooltip } from "@mantine/core";
 import { useDisclosure, useMediaQuery } from "@mantine/hooks";
 import { getPokeId } from "../../utils";
 import {
@@ -40,45 +40,26 @@ const PokemonCard = ({ pokemon }: { pokemon: PokemonProps }) => {
         direction={"column"}
         py={24}
         pos={"relative"}
-        sx={{
+        sx={(theme) => ({
           borderRadius: "24px",
           cursor: "pointer",
-        }}
+          transition: "transform .3s ease",
+          "&:hover": {
+            transform: "scale(1.025)",
+            ".add-btn": {
+              visibility: "inherit",
+            },
+          },
+          ".add-btn": {
+            visibility: "hidden",
+            [theme.fn.smallerThan("md")]: {
+              visibility: "inherit",
+            },
+          },
+        })}
         className="card"
         onClick={open}
       >
-        {myTeam && myTeam.length < 7 && (
-          <Tooltip
-            label={isInTeam ? "Remove from Team" : "Add to Team"}
-            position="left"
-            withArrow
-            events={{ hover: true, focus: false, touch: false }}
-          >
-            <Box pos={"absolute"} top={16} right={16} sx={{ zIndex: 1 }}>
-              <ActionIcon variant="transparent" size={"lg"}>
-                {isInTeam ? (
-                  <IconSquareRoundedMinus
-                    color={"#FF6B6B"}
-                    size={48}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      dispatch(removeFromTeam(url));
-                    }}
-                  />
-                ) : (
-                  <IconSquareRoundedPlus
-                    color={"#0d9f6a"}
-                    size={48}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      dispatch(addToTeam(pokemon));
-                    }}
-                  />
-                )}
-              </ActionIcon>
-            </Box>
-          </Tooltip>
-        )}
         <Flex justify={"center"} align={"center"} pos={"relative"}>
           <Box
             component="figure"
@@ -107,6 +88,29 @@ const PokemonCard = ({ pokemon }: { pokemon: PokemonProps }) => {
         >
           {name}
         </Text>
+        <Box sx={{ zIndex: 1 }} className="add-btn">
+          {isInTeam ? (
+            <Button
+              color="red.6"
+              onClick={(e) => {
+                e.stopPropagation();
+                dispatch(removeFromTeam(url));
+              }}
+            >
+              Remove from Team
+            </Button>
+          ) : (
+            <Button
+              color="green.6"
+              onClick={(e) => {
+                e.stopPropagation();
+                dispatch(addToTeam(pokemon));
+              }}
+            >
+              Add to Team
+            </Button>
+          )}
+        </Box>
       </Flex>
       {opened && <DetailModal opened={opened} close={close} url={url} />}
     </>

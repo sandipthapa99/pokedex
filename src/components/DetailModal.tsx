@@ -27,6 +27,7 @@ const DetailModal = ({
   }, []);
 
   const backgroundColor = getColor(`circle-${getPokeId(url)}`);
+
   return (
     <Modal
       opened={opened}

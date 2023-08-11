@@ -34,7 +34,14 @@ const Home = () => {
         >
           <Filter setIsFiltered={setIsFiltered} />
           <Link to={"/my-team"}>
-            <Button color="yellow.8" radius="md" rightIcon={<IconArrowRight />}>
+            <Button
+              radius="md"
+              rightIcon={<IconArrowRight />}
+              color="blue.7"
+              // sx={{
+              //   background: "#116EA3",
+              // }}
+            >
               My Team
             </Button>
           </Link>
