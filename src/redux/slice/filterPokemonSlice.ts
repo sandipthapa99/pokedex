@@ -3,7 +3,7 @@ import { FilterPokemonProps } from "../../types/FilterPokemonProps";
 
 export const filterPokemon = createAsyncThunk(
   "filterPokemon",
-  async (id: string, thunkAPI) => {
+  async (id: string) => {
     const response = await fetch(`https://pokeapi.co/api/v2/generation/${id}`);
     return response.json();
   }

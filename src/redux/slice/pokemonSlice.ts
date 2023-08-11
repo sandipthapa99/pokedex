@@ -1,10 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { PokemonDetailProps } from "../../types/PokemonDetailProps";
-import { SinglePokemonDetailProps } from "../../types/SinglePokemonDetailsProps";
 
 export const fetchPokemon = createAsyncThunk(
   "fetchPokemon",
-  async ({ offset, limit }: { offset: number; limit: number }, thunkAPI) => {
+  async ({ offset, limit }: { offset: number; limit: number }) => {
     const response = await fetch(
       `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`
     );

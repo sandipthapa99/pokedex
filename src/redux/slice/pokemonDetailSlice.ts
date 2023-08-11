@@ -3,7 +3,7 @@ import { SinglePokemonDetailProps } from "../../types/SinglePokemonDetailsProps"
 
 export const fetchPokemonDetail = createAsyncThunk(
   "fetchPokemonDetail",
-  async (url: string, thunkAPI) => {
+  async (url: string) => {
     const response = await fetch(url);
     return response.json();
   }
