@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { PokemonDetailProps } from "../../types/PokemonDetailProps";
+import { SinglePokemonDetailProps } from "../../types/SinglePokemonDetailsProps";
 
 export const fetchPokemon = createAsyncThunk(
   "fetchPokemon",
@@ -25,9 +26,19 @@ const pokemonSlice = createSlice({
     builder.addCase(fetchPokemon.pending, (state) => {
       state.isLoading = true;
     });
-    builder.addCase(fetchPokemon.fulfilled, (state, { payload }) => {
+    builder.addCase(fetchPokemon.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.data = payload;
+      state.data = {
+        ...(state?.data ?? []),
+        count: state.data?.count as number,
+        next: state.data?.next as string,
+        previous: state.data?.previous,
+
+        results: [
+          ...(state?.data?.results ?? []),
+          ...(action?.payload?.results ?? []),
+        ],
+      };
     });
     builder.addCase(fetchPokemon.rejected, (state) => {
       state.isError = false;
