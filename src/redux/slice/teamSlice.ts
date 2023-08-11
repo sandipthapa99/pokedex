@@ -3,13 +3,18 @@ import { TeamProps } from "../../types/TeamProps";
 import { PokemonProps } from "../../types/PokemonDetailProps";
 import { addToStorage, removeFromStorage } from "../../utils";
 
+/**
+ * Action to add a Pokémon to the team
+ */
 export const addToTeam = createAsyncThunk(
   "addToTeam",
   async (data: PokemonProps) => {
     return addToStorage(data);
   }
 );
-
+/**
+ * Action to remove a Pokémon from the team
+ */
 export const removeFromTeam = createAsyncThunk(
   "removeFromTeam",
   async (url: string) => {

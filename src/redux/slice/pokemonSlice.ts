@@ -1,6 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { PokemonDetailProps } from "../../types/PokemonDetailProps";
 
+/**
+ * Action to fetch all Pokémon listing
+ */
 export const fetchPokemon = createAsyncThunk(
   "fetchPokemon",
   async ({ offset, limit }: { offset: number; limit: number }) => {

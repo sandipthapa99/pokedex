@@ -1,6 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { FilterPokemonProps } from "../../types/FilterPokemonProps";
 
+/**
+ * Action to filter Pokémon based on it's Generation
+ */
 export const filterPokemon = createAsyncThunk(
   "filterPokemon",
   async (id: string) => {

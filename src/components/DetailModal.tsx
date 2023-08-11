@@ -1,9 +1,10 @@
-import { Box, Flex, Group, Modal, Tabs, Text } from "@mantine/core";
+import { Box, Flex, Group, Modal, ScrollArea, Tabs, Text } from "@mantine/core";
 import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { getColor, getPokeId } from "../utils";
 import { fetchPokemonDetail } from "../redux/slice/pokemonDetailSlice";
 import { IconArrowLeft } from "@tabler/icons-react";
+import { useMediaQuery } from "@mantine/hooks";
 
 const DetailModal = ({
   opened,
@@ -17,6 +18,8 @@ const DetailModal = ({
   const { data } = useAppSelector((state) => {
     return state?.pokemonDetailReducer;
   });
+
+  const isSmall = useMediaQuery("(max-width:48em)");
 
   const dispatch = useAppDispatch();
   useEffect(() => {
@@ -56,6 +59,7 @@ const DetailModal = ({
         onClick={() => close()}
         sx={{
           cursor: "pointer",
+          zIndex: 1,
         }}
       >
         <IconArrowLeft color="#fff" size={30} />
@@ -63,10 +67,10 @@ const DetailModal = ({
 
       <Text
         component="h1"
-        size={200}
+        size={isSmall ? 120 : 200}
         pos={"absolute"}
-        top={0}
-        right={0}
+        top={isSmall ? 70 : 0}
+        right={isSmall ? 0 : 15}
         opacity={0.1}
         color="#fff"
         weight={600}
@@ -116,8 +120,8 @@ const DetailModal = ({
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data?.id}.png`}
             alt="Car model"
             className="object-contain"
-            height={"300"}
-            width={"300"}
+            height={"264"}
+            width={"264"}
           />
         </Box>
       </Flex>
@@ -151,40 +155,44 @@ const DetailModal = ({
           </Tabs.List>
 
           <Tabs.Panel value="about" pt="xs" px={24}>
-            <p>Height : {data?.height ?? "Data Not Available"}</p>
-            <p>Weight : {data?.weight ?? "Data Not Available"}</p>
-            <p>
-              Abilities :{" "}
-              {data?.abilities
-                ? data?.abilities.map((item, index: number) => (
-                    <span key={index}>
-                      {item?.ability?.name}
-                      {index === data?.abilities.length - 1 ? "" : ","}{" "}
-                    </span>
-                  ))
-                : "Data Not Available"}
-            </p>
-            <p>
-              Types :{" "}
-              {data?.types
-                ? data?.types.map((item, index: number) => (
-                    <span key={index}>
-                      {item?.type?.name}
-                      {index === data?.abilities.length - 1 ? "" : ","}{" "}
-                    </span>
-                  ))
-                : "Data Not Available"}
-            </p>
+            <ScrollArea h={180} scrollbarSize={3} scrollHideDelay={500}>
+              <p>Height : {data?.height ?? "Data Not Available"}</p>
+              <p>Weight : {data?.weight ?? "Data Not Available"}</p>
+              <p>
+                Abilities :{" "}
+                {data?.abilities
+                  ? data?.abilities.map((item, index: number) => (
+                      <span key={index}>
+                        {item?.ability?.name}
+                        {index === data?.abilities.length - 1 ? "" : ","}{" "}
+                      </span>
+                    ))
+                  : "Data Not Available"}
+              </p>
+              <p>
+                Types :{" "}
+                {data?.types
+                  ? data?.types.map((item, index: number) => (
+                      <span key={index}>
+                        {item?.type?.name}
+                        {index === data?.abilities.length - 1 ? "" : ","}{" "}
+                      </span>
+                    ))
+                  : "Data Not Available"}
+              </p>
+            </ScrollArea>
           </Tabs.Panel>
 
           <Tabs.Panel value="stats" pt="xs" px={24}>
-            {data?.stats
-              ? data?.stats.map((item, index) => (
-                  <p key={index}>
-                    {item?.stat?.name} : <span>{item?.base_stat}</span>
-                  </p>
-                ))
-              : "No Data Available"}
+            <ScrollArea h={180} scrollbarSize={3} scrollHideDelay={500}>
+              {data?.stats
+                ? data?.stats.map((item, index) => (
+                    <p key={index}>
+                      {item?.stat?.name} : <span>{item?.base_stat}</span>
+                    </p>
+                  ))
+                : "No Data Available"}
+            </ScrollArea>
           </Tabs.Panel>
         </Tabs>
       </Box>
