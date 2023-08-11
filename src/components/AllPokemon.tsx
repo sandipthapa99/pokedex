@@ -7,7 +7,7 @@ import { fetchPokemon } from "../redux/slice/pokemonSlice";
 import { IconArrowDown } from "@tabler/icons-react";
 
 const AllPokemon = () => {
-  // state variables
+  // state variables for page data sizes
   const [offset, setOffset] = useState(0);
   const limit = 20;
 

@@ -4,13 +4,13 @@ import { useAppSelector } from "../hooks";
 import PokemonCard from "./common/PokemonCard";
 
 const FilteredPokemon = () => {
+  // access filtered store data
   const { pokemon_species } = useAppSelector((state) => {
     return state?.filterPokemonReducer;
   });
 
-  // filtered Data variables
+  // state variables for pagination
   const [currentPage, setCurrentPage] = useState(1);
-
   const dataPerPage = 20;
   const indexOfLastData = currentPage * dataPerPage;
   const indexOfFirstData = indexOfLastData - dataPerPage;
