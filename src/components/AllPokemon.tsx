@@ -1,4 +1,4 @@
-import { Button, Grid } from "@mantine/core";
+import { Box, Button, Flex, Grid } from "@mantine/core";
 import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { PokemonProps } from "../types/PokemonDetailProps";
@@ -31,21 +31,23 @@ const AllPokemon = () => {
           ))}
       </Grid>
       {data?.results && data?.results?.length > 0 && (
-        <Button
-          mt={24}
-          onClick={() => {
-            setOffset(offset + limit);
-            loadMore(offset + limit);
-          }}
-          variant="outline"
-          loading={isLoading}
-          rightIcon={<IconArrowDown size={20} />}
-          sx={{
-            zIndex: 2,
-          }}
-        >
-          Load More
-        </Button>
+        <Flex justify={"center"} align={"center"}>
+          <Button
+            mt={24}
+            onClick={() => {
+              setOffset(offset + limit);
+              loadMore(offset + limit);
+            }}
+            variant="outline"
+            loading={isLoading}
+            rightIcon={<IconArrowDown size={20} />}
+            sx={{
+              zIndex: 2,
+            }}
+          >
+            Load More
+          </Button>
+        </Flex>
       )}
     </>
   );

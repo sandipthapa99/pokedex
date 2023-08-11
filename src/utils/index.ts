@@ -1,3 +1,4 @@
+import { keyframes } from "@emotion/react";
 import { toast } from "../components/common/Toast";
 import { PokemonProps } from "../types/PokemonDetailProps";
 
@@ -71,3 +72,8 @@ export const removeFromStorage = (url: string) => {
   );
   return JSON.parse(localStorage.getItem("myTeam") || "[]");
 };
+
+export const fadeIn = keyframes({
+  "0%": { opacity: 0 },
+  "100%": { opacity: 1 },
+});

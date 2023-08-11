@@ -38,9 +38,7 @@ const Home = () => {
               radius="md"
               rightIcon={<IconArrowRight />}
               color="blue.7"
-              // sx={{
-              //   background: "#116EA3",
-              // }}
+              m={0}
             >
               My Team
             </Button>

@@ -33,7 +33,8 @@ const FilteredPokemon = () => {
       </Grid>
 
       <Pagination
-        sx={{ justifyContent: "center" }}
+        pos={"relative"}
+        sx={{ justifyContent: "center", zIndex: 2 }}
         radius={8}
         mt={28}
         total={
