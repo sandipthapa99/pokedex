@@ -1,31 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../hooks";
+import { useAppDispatch } from "../hooks";
 import { fetchPokemon } from "../redux/slice/pokemonSlice";
-import { Box, Button, Container, Flex, Grid } from "@mantine/core";
-import PokemonCard from "../components/common/PokemonCard";
-import { PokemonProps } from "../types/PokemonDetailProps";
+import { Button, Container, Flex } from "@mantine/core";
 import { useHomeStyles } from "../styles/HomeStyles";
 import Filter from "../components/Filter";
 import { Link } from "react-router-dom";
 import { IconArrowRight } from "@tabler/icons-react";
+import AllPokemon from "../components/AllPokemon";
+import FilteredPokemon from "../components/FilteredPokemon";
 
 const Home = () => {
-  // state variables
-  const [offset, setOffset] = useState(0);
-  const limit = 20;
-
-  // access state data
   const dispatch = useAppDispatch();
-  const { data, isLoading } = useAppSelector((state) => {
-    return state?.pokemonReducer;
-  });
-
-  const { classes } = useHomeStyles();
 
   useEffect(() => {
-    dispatch(fetchPokemon({ offset, limit: limit }));
+    dispatch(fetchPokemon({ offset: 0, limit: 20 }));
   }, []);
-  console.log("data: ", data);
+
+  const { classes } = useHomeStyles();
+  const [isFiltered, setIsFiltered] = useState(false);
+
   return (
     <>
       <Container size={1568} className={classes.gridContainer}>
@@ -39,7 +32,7 @@ const Home = () => {
             },
           }}
         >
-          <Filter />
+          <Filter setIsFiltered={setIsFiltered} />
           <Link to={"/my-team"}>
             <Button color="yellow.8" radius="md" rightIcon={<IconArrowRight />}>
               My Team
@@ -47,16 +40,8 @@ const Home = () => {
           </Link>
         </Flex>
 
-        {
-          <Grid>
-            {data?.results &&
-              data?.results?.map((item: PokemonProps, index) => (
-                <Grid.Col xl={3} lg={4} xs={6} key={index}>
-                  <PokemonCard pokemon={item} />
-                </Grid.Col>
-              ))}
-          </Grid>
-        }
+        {!isFiltered && <AllPokemon />}
+        {isFiltered && <FilteredPokemon />}
       </Container>
     </>
   );

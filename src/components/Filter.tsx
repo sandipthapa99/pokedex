@@ -1,9 +1,13 @@
 import { Select } from "@mantine/core";
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { useAppDispatch } from "../hooks";
 import { filterPokemon, reset } from "../redux/slice/filterPokemonSlice";
 
-const Filter = () => {
+const Filter = ({
+  setIsFiltered,
+}: {
+  setIsFiltered: Dispatch<SetStateAction<boolean>>;
+}) => {
   const dispatch = useAppDispatch();
 
   return (
@@ -14,9 +18,10 @@ const Filter = () => {
       rightSectionWidth={30}
       radius={8}
       styles={{ rightSection: { pointerEvents: "none" } }}
-      onChange={(value) =>
-        value ? dispatch(filterPokemon(value)) : dispatch(reset())
-      }
+      onChange={(value) => {
+        value ? dispatch(filterPokemon(value)) : dispatch(reset());
+        value ? setIsFiltered(true) : setIsFiltered(false);
+      }}
       w={"15%"}
       data={[
         { value: "1", label: "Generation I" },
