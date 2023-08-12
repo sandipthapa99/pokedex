@@ -1,9 +1,9 @@
 import { Box, Button, Flex, Grid } from "@mantine/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { PokemonProps } from "../types/PokemonDetailProps";
 import PokemonCard from "./common/PokemonCard";
-import { fetchPokemon } from "../redux/slice/pokemonSlice";
+import { fetchPokemon, reset } from "../redux/slice/pokemonSlice";
 import { IconArrowDown } from "@tabler/icons-react";
 
 const AllPokemon = () => {
@@ -16,6 +16,10 @@ const AllPokemon = () => {
   const { data, isLoading } = useAppSelector((state) => {
     return state?.pokemonReducer;
   });
+  useEffect(() => {
+    dispatch(reset());
+    dispatch(fetchPokemon({ offset: 0, limit: 20 }));
+  }, []);
 
   const loadMore = (offset: number) => {
     dispatch(fetchPokemon({ offset: offset, limit: limit }));

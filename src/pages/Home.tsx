@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { useAppDispatch } from "../hooks";
-import { fetchPokemon } from "../redux/slice/pokemonSlice";
+import React, { useState } from "react";
 import { Button, Container, Flex } from "@mantine/core";
 import { useHomeStyles } from "../styles/HomeStyles";
 import Filter from "../components/Filter";
@@ -10,12 +8,6 @@ import AllPokemon from "../components/AllPokemon";
 import FilteredPokemon from "../components/FilteredPokemon";
 
 const Home = () => {
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(fetchPokemon({ offset: 0, limit: 20 }));
-  }, []);
-
   const { classes } = useHomeStyles();
   const [isFiltered, setIsFiltered] = useState(false);
 

@@ -23,7 +23,11 @@ const initialState: PokemonDetailProps = {
 const pokemonSlice = createSlice({
   name: "pokemon",
   initialState,
-  reducers: {},
+  reducers: {
+    reset: () => {
+      return initialState;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchPokemon.pending, (state) => {
       state.isLoading = true;
@@ -48,4 +52,5 @@ const pokemonSlice = createSlice({
   },
 });
 
+export const { reset } = pokemonSlice.actions;
 export default pokemonSlice.reducer;
