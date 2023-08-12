@@ -2,7 +2,7 @@ import { createStyles } from "@mantine/core";
 
 export const useHomeStyles = createStyles((theme) => ({
   gridContainer: {
-    // marginBottom: 16,
+    marginBottom: 24,
     ".mantine-Grid-root": {
       ".mantine-Grid-col": {
         "&:nth-of-type(6n+1)": {

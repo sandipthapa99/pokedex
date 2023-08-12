@@ -3,14 +3,16 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Team from "./pages/Team";
 import Navbar from "./components/Navbar";
-import { useWindowScroll } from "@mantine/hooks";
-import { ActionIcon, Flex } from "@mantine/core";
+import { useMediaQuery, useWindowScroll } from "@mantine/hooks";
+import { ActionIcon, Box, Flex } from "@mantine/core";
 import { IconArrowUp } from "@tabler/icons-react";
 import { fadeIn } from "./utils";
 
 function App() {
   const [scroll, scrollTo] = useWindowScroll();
   const [isVisible, setIsVisible] = useState(false);
+
+  const isSmall = useMediaQuery("(max-width:48em)");
 
   useEffect(() => {
     // Move to top button is displayed after scrolling for 500 pixels
@@ -26,12 +28,6 @@ function App() {
 
     return () => window.removeEventListener("scroll", toggleVisibility);
   }, []);
-
-  // const fadeIn = keyframes({
-  //   "0%": { opacity: 0 },
-  //   "100%": { opacity: 1 },
-  // });
-
   return (
     <div className="App">
       <Navbar />
@@ -40,13 +36,14 @@ function App() {
         <Route path="/my-team" element={<Team />} />
       </Routes>
       {isVisible && (
-        <Flex
-          justify={"flex-end"}
+        <Box
+          // justify={"flex-end"}
           sx={{
-            position: "sticky",
-            bottom: "30px",
-            marginRight: "30px",
-            zIndex: 1,
+            position: "fixed",
+            bottom: 20,
+            right: 15,
+            // marginRight: "30px",
+            zIndex: 2,
             animation: `${fadeIn} 1s ease`,
           }}
         >
@@ -58,7 +55,7 @@ function App() {
           >
             <IconArrowUp />
           </ActionIcon>
-        </Flex>
+        </Box>
       )}
     </div>
   );
