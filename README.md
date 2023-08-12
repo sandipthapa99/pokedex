@@ -1,46 +1,80 @@
-# Getting Started with Create React App
+# Pokédex
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to **Pokédex**! This project is built using React and the features associated with it.
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation & Usage](#installation--usage)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
 
-### `npm start`
+## Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+These instructions will help you set up and run the project on your local machine.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Prerequisites
 
-### `npm test`
+Before you begin, ensure you have the following installed:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Node.js: [Download and install Node.js](https://nodejs.org/)
+- npm (Node Package Manager): This comes with Node.js installation.
 
-### `npm run build`
+### Installation & Usage
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone the repository:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   ```bash
+   git clone https://github.com/sandipthapa99/pokedex.git
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Install required packages and dependencies:
 
-### `npm run eject`
+   ```bash
+   npm install
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+3. Run the app in development server:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   ```bash
+   npm run dev
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Features
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Followings are the features of the app with approaches used to acheive the feature.
 
-## Learn More
+- All Pokémon lisiting.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+  - Fetched data using `createAsyncThunk` from `"@reduxjs/toolkit"`
+  - Store the fetched data into the `redux store`
+  - Fetches 20 data at a time making use of `query params` provided by the API.
+  - Load more feature adding 20 more data to the existing data in the store.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Pokémon filtering based on Generation.
+
+  - Select field for the users to select and choose from multiple generations of Pokémon.
+  - Filter reset options returning user to last state of all Pokémon listing.
+  - Client side <strong>Pagination</strong> for filtered data with 20 data per page.
+
+- Pokémon detail
+
+  - Details of the Pokémon using <strong>Modal</strong>.
+  - <strong>Tabs</strong> for details under different labels.
+
+- <strong>Team</strong> feature.
+  - Add or remove any Pokémon from the listing page.
+  - Made use of `localStorage` to store team data so as to preserve it upon page reload.
+
+### Technologies Used
+
+- [React](https://react.dev/)
+- [Typescript](https://www.typescriptlang.org/docs/)
+- [React Redux](https://react-redux.js.org/introduction/getting-started)
+- [Redux Toolkit](https://redux-toolkit.js.org/introduction/getting-started)
+- [Tabler Icons](https://tabler-icons.io/) as icon library
+- [Mantine](https://mantine.dev/) as UI library
+- [JSDoc](https://jsdoc.app/tags-param.html) for utility functions documentation
+
+Live site: [Pokédex](https://sandip-pokedex.netlify.app/)
