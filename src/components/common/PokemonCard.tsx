@@ -46,6 +46,9 @@ const PokemonCard = ({ pokemon }: { pokemon: PokemonProps }) => {
           transition: "transform .3s ease",
           "&:hover": {
             transform: "scale(1.025)",
+            "& img": {
+              transform: "scale(1.05)",
+            },
             ".add-btn": {
               visibility: "inherit",
               "& button": {
@@ -79,6 +82,10 @@ const PokemonCard = ({ pokemon }: { pokemon: PokemonProps }) => {
               alt="Car model"
               height={isSmall ? "160" : "240"}
               width={isSmall ? "160" : "240"}
+              style={{
+                transition: "transform .3s ease",
+                filter: "drop-shadow(8px 10px 5px #373A40)",
+              }}
             />
           </Box>
         </Flex>
